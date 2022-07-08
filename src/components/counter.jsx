@@ -20,7 +20,17 @@ class Counter extends Component {
         fontWeight : 'bold'      
     }
 
-    render() { 
+    renderListElements() {
+        /*
+        In this way you can dinamically render values based on a list, in this case
+        if there are no elements, we render an <h1> tag that says:
+            NO hay elementos para compartir
+        */
+        if (this.state.listItemsToRender.length === 0) return <h1>NO hay elementos para compartir</h1>;
+        return this.state.listItemsToRender.map(item => <li>{item}</li>);
+    }
+
+    render() {
         return (
             <React.Fragment>
                 <p style={this.style}>
@@ -33,7 +43,7 @@ class Counter extends Component {
                     adios mundo
                 </p>
                 <ul>
-                    {this.state.listItemsToRender.map(item => <li>{item}</li>)}
+                    {this.renderListElements()}
                 </ul>
                 <button>Increment counter</button>
             </React.Fragment>
