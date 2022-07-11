@@ -20,6 +20,34 @@ class Counter extends Component {
         fontWeight : 'bold'      
     }
 
+    constructor() { 
+        /*
+        Since the handleIncrement function is being used as the click function for the button,
+        the 'this' keyword does not exists in the context of the current class, i.e. doesnt
+        know about the current component instance, therefore we have 2 choices:
+
+        1. We override the constructor and just the the handleIncrement function to a new function
+        with the 'this' keyword binded
+        or 
+
+        2. We can create an arrow function and since how arrow functions work is that they intherit 
+        the 'this' keyword from the upper context (since they dont naturally have them)
+        */
+        super();
+        this.handleIncrement = this.handleIncrement.bind(this)
+    }
+
+    handleIncrement() {
+        this.setState({ counter : this.state.counter + 1 })
+        /* React needs to find a way in which it can update the UI whenever a variable or some
+        'backend' process has been updated, therefore the way to know it is by calling the
+        setState() function, in which as parameter we need to pass the state object with the
+        properties that we want to update, and set the new value
+
+        this what does is, syncs the react DOM with the current HTML dom, and updates it, whereas
+        in Angular, it updates automatically, here we need to explicitly set the change...
+    }
+
     renderListElements() {
         /*
         In this way you can dinamically render values based on a list, in this case
@@ -45,7 +73,7 @@ class Counter extends Component {
                 <ul>
                     {this.renderListElements()}
                 </ul>
-                <button>Increment counter</button>
+                <button onClick={this.handleIncrement}>Increment counter</button>
             </React.Fragment>
         );
     }
