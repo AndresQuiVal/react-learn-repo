@@ -10,11 +10,23 @@ class Counters extends Component {
             { id : 4, initValue : 2}
         ] 
     } 
+    /* in here we added component composition, in whici we nested a component inisde other component,
+    how do we use this nested component in the parent component? we need to call inside the parent component
+    the 'this.props.children' property and it will automatically render the nested component
+    */
+
     render() { 
         return ( 
             <div>
                 { this.state.products.map((product) => (
-                    <Counter key={product.id} value={product.initValue} />
+                    <Counter key={product.id} value={product.initValue}>
+                        {
+                            /*<p>Embedded element (composition)</p>*/
+                            /*
+                            In here is defined the nested element of the component
+                            */
+                        }
+                    </Counter>
                 ))}
             </div>
         );

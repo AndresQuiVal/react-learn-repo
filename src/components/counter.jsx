@@ -76,9 +76,7 @@ class Counter extends Component {
                 <p style={this.style}>
                     Counter value: {this.formatCounter()}
                 </p>
-                <p style={{fontSize : 20, fontWeight : 'lighter'}}>
-                    An example of an inserted style object 
-                </p>
+                { this.props.children }
                 <ul>
                     {this.renderListElements()}
                 </ul>
