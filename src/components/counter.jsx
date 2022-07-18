@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 
 class Counter extends Component {
     state = {  
-        counter : this.props.value, // references the dynamic arguments passed through the component
+        // counter : this.props.counter.initValue, // references the dynamic arguments passed through the component
                                     // in other components..
         listItemsToRender : ["elem1", "elem2", "elem3"]
         /* to render list items, we need to use the map method of the buil-in object of 
         the lists, in that way you can render html elements in the virtual DOM with the javascript
         content shared*/
-    } 
+    }
 
     /*
     With this way you can create style objects for the html elements, the thing 
@@ -60,6 +60,12 @@ class Counter extends Component {
         */
     }
 
+    // handleDecrement = () => { // commented since its not longer being used!
+    //     if (this.state.counter > 0) {
+    //         this.setState({ counter : this.state.counter - 1 });
+    //     }
+    // }
+
     renderListElements() {
         /*
         In this way you can dinamically render values based on a list, in this case
@@ -72,22 +78,29 @@ class Counter extends Component {
 
     render() {
         return (
-            <React.Fragment>
-                <p style={this.style}>
-                    Counter value: {this.formatCounter()}
+            // NOTE: <React.Fragment> is not a block element..., whereas div is
+            <div>
+                <p className='badge badge-primary m-3'>
+                    <p>{this.formatCounter()}</p>
                 </p>
-                { this.props.children }
-                <ul>
-                    {this.renderListElements()}
-                </ul>
-                <button onClick={this.handleIncrement}>Increment counter</button>
-            </React.Fragment>
+                { /*this.props.children*/ }
+                {
+                    /*
+                    <ul>
+                        {this.renderListElements()}
+                    </ul>
+                    */
+                }
+                <button className="btn btn-dark m-1" onClick={() => this.props.onIncrement(this.props.counter)}>+</button>
+                <button className="btn btn-dark m-1" onClick={() => this.props.onDecrement(this.props.counter)}>-</button>
+                <button className="btn btn-danger m-1" onClick={() => this.props.onRemoveItem(this.props.counter)}>REMOVE</button>
+            </div>
         );
     }
 
     formatCounter = function() {
-        let { counter } = this.state;
-        return counter === 0 ? <h1>Tu contador es incorrecto</h1> : <h4>Contador con valor {counter}</h4>;
+        let counter = this.props.counter.initValue;
+        return counter === 0 ? "No elements added" : counter;
     }
 }
  
