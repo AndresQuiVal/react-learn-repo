@@ -1,0 +1,30 @@
+Lifecycle hooks:
+
+the lifecycle hooks are the methods listed in the descriptions
+
+1. Mounting phase
+    Ocurrs when the component (and its children compoments) render completely, i.e.
+    after the component is rendered completely, the method componentDidMount() {}
+    is called
+
+
+2. Updating phase:
+    Ocurrs when new state or new props are in the component calling
+    componentDidUpdate(prevProps, prevState) { ... }
+
+    where prevProps and prevState reference the previous state and previous
+    state accordingly
+
+    How react updates things?
+        2 copies of the virtual DOM, compares and finally updates only the component
+        that has changed
+
+3. Unmounting phase:
+
+    calls the method componentWillUnmount() {...} right before the component is 
+    removed from the DOM
+
+    in here we can clear any memory information fast before the component is removed
+    completely from the DOM
+
+

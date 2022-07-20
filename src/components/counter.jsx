@@ -37,6 +37,21 @@ class Counter extends Component {
         // use instead of arrow functions...
         // super(); 
         // this.handleIncrement = this.handleIncrement.bind(this)
+
+        // this.setState(), a super NONO in react, since the setState
+        // CAN ONLY BE called after the render() method is called, i.e. the component
+        // is rendered
+
+        /*
+        Also, if we call this.props, will return undefined, how can we use this.props?
+        we need to pass in parameter to the contructor the props as following:
+
+        constructor(props) {
+            super(props);
+            ...
+            this.props.abc -> this will work!
+        }        
+        */
    // }
 
     handleIncrement = () => {
